@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal &amp; Scale Advisory — GTM Strategy, RevOps &amp; AI Adoption</title>
+<meta name="description" content="B2B SaaS advisory and consulting — GTM strategy, Revenue Operations, and AI adoption for founders, C-suite, and investors.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:     #192A4A;
+    --teal:     #116B78;
+    --teal-dk:  #0D5260;
+    --teal-lt:  #A3D8C7;
+    --teal-bg:  #EAF4F4;
+    --gray:     #4A4A4A;
+    --mgray:    #7A7A7A;
+    --lgray:    #F7F8FA;
+    --white:    #FFFFFF;
+    --rule:     #DDE5E8;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--gray); background: var(--white); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--rule); padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo svg { height: 36px; width: auto; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 400; color: var(--mgray); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { font-size: 13px !important; font-weight: 500 !important; color: var(--white) !important; background: var(--teal); padding: 8px 20px; border-radius: 3px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--navy) !important; }
+
+  /* HERO */
+  .hero { padding: 88px 48px 80px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300; color: var(--teal); margin-bottom: 20px; letter-spacing: 0.01em; }
+  .hero h1 { font-size: 44px; font-weight: 700; color: var(--navy); line-height: 1.12; letter-spacing: -0.8px; margin-bottom: 22px; }
+  .hero h1 em { font-style: normal; color: var(--teal); }
+  .hero-body { font-size: 17px; line-height: 1.8; color: var(--gray); margin-bottom: 36px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--teal); color: var(--white); font-size: 14px; font-weight: 500; padding: 12px 26px; border-radius: 3px; text-decoration: none; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--navy); }
+  .btn-secondary { font-size: 14px; font-weight: 500; color: var(--navy); text-decoration: none; display: flex; align-items: center; gap: 5px; border-bottom: 1.5px solid var(--rule); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
+  .btn-secondary:hover { color: var(--teal); border-color: var(--teal); }
+  .hero-illustration { display: flex; align-items: center; justify-content: center; }
+  .hero-illustration img { width: 100%; max-width: 460px; height: auto; }
+
+  .section-divider { height: 1px; background: var(--rule); max-width: 1100px; margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: var(--navy); padding: 80px 48px; }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+  .section-label { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300; color: var(--teal-lt); margin-bottom: 16px; }
+  .about h2 { font-size: 30px; font-weight: 600; color: var(--white); line-height: 1.2; letter-spacing: -0.3px; }
+  .teal-rule { display: none; }
+  .about-body { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.68); margin-bottom: 16px; font-weight: 300; }
+  .about-body strong { color: var(--white); font-weight: 500; }
+  .about-body:last-child { margin-bottom: 0; }
+  .about-right-label { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300; color: rgba(163,216,199,0.8); margin-bottom: 20px; }
+  .engagements { display: flex; flex-direction: column; gap: 14px; }
+  .engagement-item { padding: 16px 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; }
+  .engagement-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .engagement-desc { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.6; font-weight: 300; }
+
+  /* SERVICES */
+  .services { padding: 80px 48px; background: var(--white); }
+  .services-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300; color: var(--teal); margin-bottom: 12px; letter-spacing: 0.01em; }
+  .section-header { margin-bottom: 44px; }
+  .section-header h2 { font-size: 30px; font-weight: 600; color: var(--navy); line-height: 1.2; letter-spacing: -0.3px; max-width: 480px; margin-top: 8px; }
+  .section-header p { font-size: 15px; color: var(--mgray); line-height: 1.7; margin-top: 12px; max-width: 560px; font-weight: 300; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service-card { border: 1px solid var(--rule); padding: 26px 26px 28px; transition: transform 0.2s; border-radius: 3px; }
+  .service-card:hover { transform: translateY(-2px); background: var(--teal-bg); }
+  .service-card.featured { background: var(--teal-bg); }
+  .service-card.featured:hover { background: var(--teal-bg); transform: translateY(-2px); }
+  .service-title { font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 10px; }
+  .service-desc { font-size: 13.5px; line-height: 1.7; color: var(--gray); font-weight: 300; }
+
+  /* METHODOLOGY */
+  .methodology { background: var(--teal-bg); padding: 80px 48px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .methodology-inner { max-width: 1100px; margin: 0 auto; }
+  .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-top: 44px; }
+  .method-steps { display: flex; flex-direction: column; }
+  .method-step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: flex-start; }
+  .method-step:first-child { padding-top: 0; }
+  .method-step:last-child { border-bottom: none; }
+  .step-num { font-size: 22px; font-weight: 300; color: var(--teal); line-height: 1; min-width: 28px; margin-top: 1px; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .step-desc { font-size: 13px; color: var(--mgray); line-height: 1.55; font-weight: 300; }
+  .step-insight { font-size: 12px; color: var(--teal); font-weight: 500; margin-top: 5px; font-style: italic; }
+  .method-pillars { display: flex; flex-direction: column; gap: 14px; }
+  .pillar { background: var(--white); border: 1px solid var(--rule); padding: 18px 20px; border-radius: 3px; }
+  .pillar-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+  .pillar-desc { font-size: 13px; line-height: 1.65; color: var(--gray); font-weight: 300; }
+
+  /* KNOWLEDGE & TOOLS */
+  .resources { padding: 80px 48px; background: var(--white); }
+  .resources-inner { max-width: 1100px; margin: 0 auto; }
+  .resources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 44px; }
+  .resource-category { display: flex; flex-direction: column; gap: 10px; }
+  .resource-cat-label { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.01em; }
+  .resource-item { display: flex; flex-direction: column; gap: 3px; padding: 13px 15px; border: 1px solid var(--rule); text-decoration: none; transition: background 0.2s, transform 0.15s; border-radius: 3px; }
+  .resource-item:hover { background: var(--teal-bg); transform: translateX(2px); }
+
+
+  .resource-item-title { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .resource-item-desc { font-size: 12px; color: var(--mgray); line-height: 1.5; font-weight: 300; }
+  .resource-item-meta { font-size: 11px; color: var(--teal); font-weight: 500; margin-top: 5px; }
+
+  /* CONTACT */
+  .contact { padding: 80px 48px; background: var(--navy); }
+  .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact .section-eyebrow { color: var(--teal-lt); }
+  .contact h2 { font-size: 30px; font-weight: 600; color: var(--white); line-height: 1.2; letter-spacing: -0.3px; margin-bottom: 14px; margin-top: 8px; }
+  .contact-body { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.65); font-weight: 300; margin-bottom: 28px; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--white); text-decoration: none; font-weight: 400; transition: color 0.2s; }
+  .contact-link:hover { color: var(--teal-lt); }
+  .contact-link-icon { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-link-icon svg { width: 14px; height: 14px; stroke: var(--teal-lt); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.65); }
+  .form-group input, .form-group select, .form-group textarea { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--gray); background: var(--white); border: 1px solid rgba(255,255,255,0.15); border-radius: 3px; padding: 9px 13px; transition: border-color 0.2s; outline: none; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal-lt); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit { font-family: 'Inter', sans-serif; background: var(--teal); color: var(--white); font-size: 14px; font-weight: 500; padding: 12px 26px; border: none; border-radius: 3px; cursor: pointer; transition: background 0.2s; align-self: flex-start; }
+  .form-submit:hover { background: var(--teal-dk); }
+
+  /* FOOTER */
+  footer { background: var(--teal-dk); padding: 32px 48px; border-top: 1px solid rgba(163,216,199,0.25); }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-logo svg { height: 26px; width: auto; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ANIMATIONS */
+  .hero-text { animation: fadeUp 0.55s ease both; }
+  .hero-illustration { animation: fadeUp 0.55s ease 0.1s both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 36px; padding: 56px 24px 48px; }
+    .hero h1 { font-size: 34px; }
+    .hero-illustration { order: -1; }
+    .hero-illustration img { max-width: 280px; }
+    .about { padding: 56px 24px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services { padding: 56px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .methodology { padding: 56px 24px; }
+    .method-grid { grid-template-columns: 1fr; gap: 40px; }
+    .resources { padding: 56px 24px; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .contact { padding: 56px 24px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 28px 24px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 2000 1241.3" xmlns="http://www.w3.org/2000/svg"><style type="text/css">
+	.logo-st0{fill:#192A4A;}
+	.logo-st1{fill:#116B78;}
+	.logo-st2{fill:#A3D8C7;}
+</style>
+<g>
+	<g>
+		<path class="logo-st0" d="M131.14,963.09c-36.63,0-64.83-20.03-64.83-52.45h32.15c1.32,15.02,11.86,27.15,32.68,27.15
+			c21.08,0,32.94-11.33,32.94-26.88c0-44.27-97.25-15.55-97.25-83.02c0-32.15,25.56-52.18,62.99-52.18
+			c35.05,0,59.82,18.45,62.46,49.81h-33.21c-1.05-12.39-11.86-23.72-30.84-24.25c-17.39-0.53-30.84,7.9-30.84,25.56
+			c0,41.38,96.99,15.55,96.99,82.49C194.39,936.74,171.99,963.09,131.14,963.09z"/>
+		<path class="logo-st0" d="M226,777.55c0-10.8,8.43-19.24,19.24-19.24c10.54,0,18.97,8.44,18.97,19.24c0,10.81-8.43,19.24-18.97,19.24
+			C234.44,796.79,226,788.36,226,777.55z M229.96,816.03H260v145.21h-30.05V816.03z"/>
+		<path class="logo-st0" d="M358.04,813.66c23.72,0,41.38,11.07,50.34,23.46v-21.08h30.31v147.59c0,39.53-25.56,69.31-70.89,69.31
+			c-38.74,0-67.47-19.24-71.16-51.39h29.78c4.48,15.02,20.56,25.3,41.38,25.3c23.19,0,40.59-14.23,40.59-43.22v-24.25
+			c-9.23,12.39-26.62,24.25-50.34,24.25c-38.22,0-68.52-30.84-68.52-75.64S319.82,813.66,358.04,813.66z M364.36,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.67,0,44.01-17.66,44.01-49.02
+			C408.38,857.41,387.03,839.75,364.36,839.75z"/>
+		<path class="logo-st0" d="M581.25,880.07c0-26.62-14.49-40.32-36.37-40.32c-22.14,0-36.63,13.7-36.63,40.32v81.17H478.2V816.03h30.05
+			v16.6c9.75-11.86,25.83-18.97,43.22-18.97c34,0,59.56,21.35,59.56,61.93v85.65h-29.78V880.07z"/>
+		<path class="logo-st0" d="M707.74,813.66c24.51,0,41.38,11.6,50.34,23.46v-21.08h30.31v145.21h-30.31v-21.61
+			c-9.23,12.39-26.62,23.99-50.87,23.99c-37.69,0-67.99-30.84-67.99-75.64S669.53,813.66,707.74,813.66z M714.07,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.67,0,44.01-17.66,44.01-49.02
+			C758.08,857.41,736.73,839.75,714.07,839.75z"/>
+		<path class="logo-st0" d="M827.91,766.22h30.05v195.02h-30.05V766.22z"/>
+		<path class="logo-st0" d="M1052.45,818.93c0.53-13.44-7.12-20.56-18.45-20.56c-11.86,0-19.5,7.91-19.5,17.66
+			c0,10.01,5.53,18.19,18.45,32.15l48.49,48.23l18.71-30.84h32.42l-23.72,40.59c-2.11,3.69-4.48,7.38-6.59,10.81l44.54,44.28h-39.27
+			l-22.66-22.66c-17.66,17.66-37.95,26.09-63.52,26.09c-39.53,0-65.89-21.87-65.89-56.14c0-24.77,13.97-45.59,42.96-57.45
+			c-10.28-12.39-13.97-22.14-13.97-35.05c0-23.98,19.5-42.17,50.86-42.17c31.89,0,49.02,20.03,47.18,45.07H1052.45z M1065.09,918.82
+			l-48.49-48.76c-21.35,8.43-31.1,21.08-31.1,37.43c0,17.66,14.23,31.62,35.84,31.62C1038.48,939.11,1052.45,932.26,1065.09,918.82z
+			"/>
+		<path class="logo-st0" d="M1295.42,963.09c-36.63,0-64.83-20.03-64.83-52.45h32.15c1.32,15.02,11.86,27.15,32.68,27.15
+			c21.08,0,32.94-11.33,32.94-26.88c0-44.27-97.25-15.55-97.25-83.02c0-32.15,25.56-52.18,62.99-52.18
+			c35.05,0,59.82,18.45,62.46,49.81h-33.21c-1.05-12.39-11.86-23.72-30.84-24.25c-17.39-0.53-30.84,7.9-30.84,25.56
+			c0,41.38,96.99,15.55,96.99,82.49C1358.67,936.74,1336.27,963.09,1295.42,963.09z"/>
+		<path class="logo-st0" d="M1455.38,813.66c35.58,0,58.77,17.66,66.94,48.23h-32.42c-5.01-13.97-16.6-22.93-34.53-22.93
+			c-24.25,0-40.32,17.92-40.32,49.55c0,31.89,16.08,49.81,40.32,49.81c17.92,0,28.99-7.9,34.53-22.93h32.42
+			c-8.17,28.46-31.36,48.23-66.94,48.23c-41.64,0-71.16-29.52-71.16-75.11C1384.22,843.18,1413.74,813.66,1455.38,813.66z"/>
+		<path class="logo-st0" d="M1610.87,813.66c24.51,0,41.38,11.6,50.34,23.46v-21.08h30.31v145.21h-30.31v-21.61
+			c-9.23,12.39-26.62,23.99-50.86,23.99c-37.69,0-68-30.84-68-75.64S1572.65,813.66,1610.87,813.66z M1617.19,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.66,0,44.01-17.66,44.01-49.02
+			C1661.2,857.41,1639.86,839.75,1617.19,839.75z"/>
+		<path class="logo-st0" d="M1731.03,766.22h30.05v195.02h-30.05V766.22z"/>
+		<path class="logo-st0" d="M1863.07,963.62c-41.64,0-72.48-29.52-72.48-75.11s29.52-74.85,72.48-74.85c41.38,0,70.63,28.73,70.63,71.42
+			c0,5.01-0.26,9.75-1.05,14.76h-110.95c2.11,23.99,19.24,38.48,41.38,38.48c18.45,0,28.73-8.96,34.26-20.29h32.42
+			C1921.57,943.32,1898.64,963.62,1863.07,963.62z M1821.95,875.59h80.38c-0.53-22.4-18.18-36.63-40.59-36.63
+			C1841.46,838.96,1825.12,852.66,1821.95,875.59z"/>
+	</g>
+	<g>
+		<path class="logo-st1" d="M603.13,1128.01h-53.24l-9.27,20.65H523.9l44.11-98.34h17.14l44.11,98.34h-16.72L603.13,1128.01z
+			 M576.58,1066.9l-20.79,46.78h41.59L576.58,1066.9z"/>
+		<path class="logo-st1" d="M758.23,1050.46v98.2H744.6l-0.84-10.96c-5.48,8.85-14.75,12.36-24.02,12.36c-20.09,0-35.4-13.21-35.4-36.1
+			c0-23.6,15.03-36.11,35.12-36.11c8.43,0,19.81,4.22,24.3,12.36v-39.76H758.23z M698.8,1113.97c0,13.91,9.69,22.62,21.92,22.62
+			c12.08,0,22.06-8.99,22.06-22.62c0-13.35-9.97-22.48-22.06-22.48C708.5,1091.49,698.8,1099.78,698.8,1113.97z"/>
+		<path class="logo-st1" d="M895.9,1079.27l-29.36,69.68h-15.88l-29.5-69.68h16.02l9.27,22.34l12.22,32.17l10.96-29.36l10.4-25.15H895.9z
+			"/>
+		<path class="logo-st1" d="M975.13,1059.04c0,11.94-17.98,11.94-17.98,0C957.15,1047.23,975.13,1047.23,975.13,1059.04z M958.84,1079.13
+			v69.54h14.47v-69.54H958.84z"/>
+		<path class="logo-st1" d="M1087.8,1096.4c-5.48-5.06-11.38-6.46-18.26-6.46c-8.85-0.14-14.75,2.81-14.75,8.29
+			c0.14,5.76,6.18,8.01,15.03,8.85c12.79,1.12,29.5,3.93,29.36,21.77c-0.14,12.93-11.52,21.92-29.5,21.92
+			c-11.24,0-22.48-2.53-31.61-12.78l7.59-10.26c6.46,7.16,16.16,10.11,24.3,10.26c6.88,0,14.61-2.53,14.75-8.99
+			c0.14-6.18-5.76-8.57-16.02-9.55c-13.06-1.27-28.1-5.48-28.24-20.79c0-15.31,15.87-21.07,28.8-21.07
+			c10.68,0,18.97,2.39,26.69,9.27L1087.8,1096.4z"/>
+		<path class="logo-st1" d="M1231.52,1114.11c0,20.51-14.19,35.96-35.96,35.96c-21.63,0-35.68-15.45-35.68-35.96
+			c0-20.37,14.19-36.1,35.68-36.1C1216.91,1078,1231.52,1093.74,1231.52,1114.11z M1174.34,1114.11c0,12.36,8.01,22.48,21.21,22.48
+			c13.35,0,21.35-10.11,21.35-22.48c0-12.22-8.71-22.76-21.35-22.76C1182.35,1091.35,1174.34,1101.88,1174.34,1114.11z"/>
+		<path class="logo-st1" d="M1310.89,1079.41l0.98,9.13c5.06-8.85,12.92-10.68,20.37-10.68c6.74,0,13.21,2.39,17.14,5.9l-6.6,12.64
+			c-3.51-2.81-6.88-4.21-12.22-4.21c-9.97,0-18.68,6.18-18.68,18.97v37.51h-14.47v-69.26H1310.89z"/>
+		<path class="logo-st1" d="M1476.1,1079.41l-43.69,101.43h-16.02l14.33-33.15l-27.68-68.28h16.86l11.94,32.73l6.88,19.67l7.45-19.39
+			l13.77-33.01H1476.1z"/>
+	</g>
+	<path class="logo-st2" d="M679.66,423.08c0-30.68,24.86-55.54,55.54-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C704.52,478.59,679.66,453.73,679.66,423.08z"/>
+	<path class="logo-st2" d="M849.81,536.99c-18.35,9.1-37.35,12.96-54.97,13.61c0.29,2.4,0.44,4.85,0.44,7.33v143.77H672.33V557.94
+		c0-32.26,24.88-58.72,56.48-61.25c1.64-0.15,3.31-0.21,4.99-0.21c5.67,0,11.17,0.76,16.37,2.21c0.06,0,0.1,0.02,0.15,0.04
+		c0.04,0.02,0.13,0.04,0.21,0.06c0,0,0.02,0.02,0.04,0.02c0.74,0.29,2.34,0.84,4.66,1.52c0.04,0.02,0.06,0.02,0.11,0.02
+		c7.5,2.17,22.29,5.46,39.5,4.23c17.51-1.22,37.54-7.14,54.97-23.66V536.99z"/>
+	<path class="logo-st1" d="M941.65,474.08c13.08-17.38,22.92-29.96,31.1-38.96v266.58H849.81v-141.5c20.92-8.57,42.28-22.96,61.18-46.41
+		C922.54,499.49,932.65,486.05,941.65,474.08z"/>
+	<path class="logo-st1" d="M940.78,274.35c0-30.68,24.86-55.54,55.51-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C965.65,329.87,940.78,305.01,940.78,274.35z"/>
+	<path class="logo-st1" d="M1150.23,297.11v80.71c-17.49,20.6-33.88,32.59-50.86,37.65c-26.67,7.9-47.32-3.24-63.92-12.2
+		c-2.82-1.52-5.52-2.99-8.15-4.3c-7.23-3.62-13.84-6.15-20.46-5.79c-13.08,0.72-23.62,4.87-34.09,12.96
+		c-14.07,10.85-28.04,28.84-47.93,55.28c-8.85,11.76-18.88,25.09-30.21,39.17c-13.59,16.88-28.95,28.59-44.79,36.41v-56.06
+		c2.99-2.82,5.9-5.96,8.7-9.44c10.85-13.46,20.23-25.91,29.28-37.94c27.56-36.62,50.59-67.21,84.95-80.19
+		c9.52-3.58,19.93-5.84,31.54-6.47c8.32-0.46,15.97,0.59,23.01,2.49c11.59,3.1,21.53,8.45,30.17,13.1
+		c14.5,7.82,21.13,10.79,28.72,8.53c9.4-2.78,26.27-14.94,53.13-57.01C1143.12,308.06,1146.73,302.46,1150.23,297.11z"/>
+	<path class="logo-st1" d="M1105.35,435.65c15.42-4.57,30.11-13.4,44.88-27.28v293.34h-122.93V422.82c13.44,7.23,31.46,16.41,53.91,16.41
+		C1089.25,439.24,1097.36,438.04,1105.35,435.65z"/>
+	<path class="logo-st0" d="M1210.69,116c0-30.68,24.86-55.54,55.54-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C1235.55,171.52,1210.69,146.66,1210.69,116z"/>
+	<path class="logo-st0" d="M1327.68,252.57v449.14h-122.93V299.07c-8.2,11.88-16.66,24.67-26.38,39.9
+		c-9.84,15.38-19.13,28.25-28.15,38.85v-80.71c6.74-10.28,13-19.55,19.21-28.44c30.76-44.14,45.21-63.48,70.75-71.78
+		c9.25-3.01,19.95-4.57,33.41-5.33c1.54,0.17,3.03,0.4,4.53,0.7c7.77,1.52,15.02,4.53,21.45,8.7
+		C1316.5,211.89,1327.68,230.93,1327.68,252.57z"/>
+</g></svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#resources">Knowledge &amp; Tools</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">XaaS Advisory &amp; Consulting</div>
+    <h1>GTM strategy and AI adoption that <em>actually sticks.</em></h1>
+    <p class="hero-body">I work with CEOs, CROs, and PE/VC-backed leadership teams on three things: diagnosing revenue friction, building operational clarity, and deploying AI in ways that teams actually adopt and sustain. Think of it as having a revenue counselor in your corner.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start a conversation</a>
+      <a href="#services" class="btn-secondary">What I do →</a>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <img src="innovation_transparent.png" alt="AI and human collaboration" />
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">About</div>
+      <h2>I've operated in the seat. I know what breaks.</h2>
+      <div style="margin-bottom:20px;"></div>
+      <p class="about-body">I'm Alison Sullivan, Principal of Signal &amp; Scale Advisory — a GTM strategy, Revenue Operations, and AI adoption practice for growth-stage and scaling XaaS companies.</p>
+      <p class="about-body">I partner with CEOs, CROs, and PE/VC-backed leadership teams — <strong>founder-led, PE-backed, or scaling</strong> — where I can go deep and do work that moves the needle. Strategy connected to execution, with pragmatism.</p>
+      <p class="about-body">My edge is that I've been in the seat. 25+ years across AI, SaaS, product, sales, and revenue operations — operator roles, board directorships, and PE portfolio work. I know what breaks at scale because I've fixed it.</p>
+      <p class="about-body">Where I focus with AI: <strong>the human edge.</strong> Tools and models are increasingly commoditized — the advantage lives in how your people adopt them, adapt with them, and make them work for your specific business.</p>
+    </div>
+    <div>
+      <div class="about-right-label">How I engage</div>
+      <div class="engagements">
+        <div class="engagement-item">
+          <div class="engagement-title">Advisory</div>
+          <div class="engagement-desc">Ongoing strategic partnership — GTM direction, operator perspective, and senior counsel applied to your most pressing revenue challenges.</div>
+        </div>
+        <div class="engagement-item">
+          <div class="engagement-title">GTM &amp; RevOps Consulting</div>
+          <div class="engagement-desc">Project-based or fractional engagements — diagnosing friction, designing the operating model, and building the instrumentation to know it's working. Includes GTM and RevOps diligence for investors evaluating XaaS assets.</div>
+        </div>
+        <div class="engagement-item">
+          <div class="engagement-title">AI Adoption Programs</div>
+          <div class="engagement-desc">Structured sprints and transformation programs for teams ready to move from AI curiosity to measurable operational lift — with governance and change management from day one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Services</div>
+      <h2>Where I focus.</h2>
+      <p>Engagements are designed around your situation. These are the three areas I work in most.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-title">GTM Strategy &amp; Execution</div>
+        <div class="service-desc">From ICP and coverage model design to AOP planning and board-level GTM advisory — strategy connected to how your team actually operates, not how a slide deck says it should.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-title">Revenue Operations</div>
+        <div class="service-desc">Identifying friction across sales, marketing, CS, and partners — and delivering prioritized recommendations based on emerging best practices and change management needs. RevOps as an operating system and cadence, not just a reporting function.</div>
+      </div>
+      <div class="service-card featured">
+        <div class="service-title">AI Adoption &amp; Implementation</div>
+        <div class="service-desc">Most AI programs stall at adoption, not technology. Outcomes-based sprints and transformation programs — built with train-the-trainer delivery and change management from the start. The value isn't in running the prompt. It's in knowing your business well enough to fit the solution to it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="methodology" id="methodology">
+  <div class="methodology-inner">
+    <div class="section-eyebrow">How I work</div>
+    <div class="method-grid">
+      <div>
+        <h2 style="font-size:26px;font-weight:600;color:var(--navy);line-height:1.2;letter-spacing:-0.2px;margin-bottom:8px;">The AI GTM Sprint — a clear path from curiosity to signal.</h2>
+        <p style="font-size:14px;line-height:1.75;color:var(--mgray);font-weight:300;margin-bottom:28px;">Five weeks. One focused motion. Measurable outcomes at every gate before you scale.</p>
+        <div class="method-steps">
+          <div class="method-step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">Discovery &amp; Prioritization</div>
+              <div class="step-desc">Friction mapping, use case ranking, readiness baseline</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Diagnosis &amp; Scope</div>
+              <div class="step-desc">Root cause analysis, solution design, success metrics defined</div>
+              <div class="step-insight">Business context, constraints, and policy fitted to the solution — so deployment is optimized for your operation, not a generic template.</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Deploy &amp; Instrument</div>
+              <div class="step-desc">AI solution live, tracking in place, governance documented</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-title">Signal Capture &amp; Coaching</div>
+              <div class="step-desc">Adoption data, team coaching, train-the-trainer delivery</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="step-num">5</div>
+            <div>
+              <div class="step-title">Handoff &amp; Roadmap</div>
+              <div class="step-desc">Outcomes report, capability transfer, next sprint scoped</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-size:20px;font-weight:600;color:var(--navy);line-height:1.2;letter-spacing:-0.2px;margin-bottom:24px;">Three principles every engagement is built on.</h2>
+        <div class="method-pillars">
+          <div class="pillar">
+            <div class="pillar-title">Outcomes first</div>
+            <div class="pillar-desc">Business outcomes are defined before any solution is scoped. Every gate requires measurable signal. No outcomes, no next step.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Capability transfer</div>
+            <div class="pillar-desc">Train-the-trainer is structural — not optional. Your team builds real capability so the work compounds after the engagement ends.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Change by design</div>
+            <div class="pillar-desc">Change management and adoption infrastructure are built into every deliverable. Adoption is engineered, not hoped for.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KNOWLEDGE & TOOLS -->
+<section class="resources" id="resources">
+  <div class="resources-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Knowledge &amp; Tools</div>
+      <h2>Resources worth your time.</h2>
+      <p>A curated set of frameworks, best practices, research, and tools — some I've found useful, some I've created. Updated as the space evolves.</p>
+    </div>
+    <div class="resources-grid">
+
+      <div class="resource-category">
+        <div class="resource-cat-label">Frameworks &amp; White Papers</div>
+        <a href="/assets/ai-native-revops-rainbow.pdf" target="_blank" class="resource-item download">
+          <div class="resource-item-title">The AI-Native RevOps Rainbow</div>
+          <div class="resource-item-desc">How skills, agents, and orchestration transform every layer of the revenue operating system — across all three stages of AI maturity.</div>
+          <div class="resource-item-meta">↓ Download · PDF</div>
+        </a>
+        <a href="/assets/revops-maturity-journey.pdf" target="_blank" class="resource-item download">
+          <div class="resource-item-title">The AI RevOps Maturity Journey</div>
+          <div class="resource-item-desc">How AI deployment should evolve as a company moves from founder-led to repeatable, repeatable to accelerating, and accelerating to scalable and predictable.</div>
+          <div class="resource-item-meta">↓ Download · PDF</div>
+        </a>
+        <a href="/assets/ai-deployment-methodology.pdf" target="_blank" class="resource-item download">
+          <div class="resource-item-title">AI Deployment Methodology</div>
+          <div class="resource-item-desc">Signal &amp; Scale's six-phase delivery model — outcome-based, change-ready, with train-the-trainer capability transfer built in from day one.</div>
+          <div class="resource-item-meta">↓ Download · PDF</div>
+        </a>
+      </div>
+
+      <div class="resource-category">
+        <div class="resource-cat-label">Articles &amp; Thought Leadership</div>
+        <a href="https://peoplealways.substack.com" target="_blank" class="resource-item">
+          <div class="resource-item-title">People Always — Substack</div>
+          <div class="resource-item-desc">Writing on co-evolving with AI — for work, community, and life. Practical and philosophical in equal measure.</div>
+          <div class="resource-item-meta">↗ Read on Substack</div>
+        </a>
+        <a href="https://block.xyz/inside/from-hierarchy-to-intelligence" target="_blank" class="resource-item">
+          <div class="resource-item-title">From Hierarchy to Intelligence — Jack Dorsey</div>
+          <div class="resource-item-desc">How the new org structure will be flat and organized around an intelligence layer. A sharp take on where company design is heading.</div>
+          <div class="resource-item-meta">↗ Read on Block.xyz</div>
+        </a>
+        <a href="https://revenue-playbook.com/documentation/welcome/" target="_blank" class="resource-item">
+          <div class="resource-item-title">The Revenue Playbook — Jeremy Donovan</div>
+          <div class="resource-item-desc">A practical, research-backed resource for revenue leaders. One of the more useful references in the GTM space.</div>
+          <div class="resource-item-meta">↗ revenue-playbook.com</div>
+        </a>
+      </div>
+
+      <div class="resource-category">
+        <div class="resource-cat-label">Tools &amp; Interactive</div>
+        <a href="https://square132.github.io/ssa_tools/" target="_blank" class="resource-item">
+          <div class="resource-item-title">Signal &amp; Scale Tools</div>
+          <div class="resource-item-desc">Interactive GTM and RevOps tools — including the Deal Desk Dynamic Pricing app.</div>
+          <div class="resource-item-meta">↗ Open tools site</div>
+        </a>
+        <a href="/assets/revops-rainbow-interactive.html" target="_blank" class="resource-item">
+          <div class="resource-item-title">AI-Native RevOps Rainbow</div>
+          <div class="resource-item-desc">Interactive visual of the full RevOps Rainbow with the AI Intelligence &amp; Orchestration layer — explore it layer by layer.</div>
+          <div class="resource-item-meta">↗ Coming soon</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">Get in touch</div>
+      <h2>Let's talk.</h2>
+      <div style="margin-bottom:20px;"></div>
+      <p class="contact-body">The first conversation is always about your situation, not a pitch. If someone pointed you here, I'm glad they did. Reach out and let's see if there's a fit.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/alisonkuosullivan" class="contact-link" target="_blank">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          LinkedIn — Alison Kuo Sullivan
+        </a>
+        <a href="https://peoplealways.substack.com" class="contact-link" target="_blank">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 4H2v4h20V4z"/><path d="M2 10v10l10-5 10 5V10H2z"/></svg>
+          </div>
+          Substack — People Always
+        </a>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" name="contact" id="contact-form" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
+        <div class="form-row">
+          <div class="form-group"><label>First name</label><input type="text" name="first-name" placeholder="Jane"></div>
+          <div class="form-group"><label>Last name</label><input type="text" name="last-name" placeholder="Smith"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jane@company.com"></div>
+        <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Company name"></div>
+        <div class="form-group">
+          <label>What brings you here?</label>
+          <select name="topic">
+            <option value="" disabled selected>Select a topic</option>
+            <option>GTM Strategy &amp; Execution</option>
+            <option>Revenue Operations</option>
+            <option>AI Adoption &amp; Implementation</option>
+            <option>Advisory Retainer</option>
+            <option>Due Diligence / PE</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Tell me more</label><textarea name="message" placeholder="What's the friction you're trying to solve?"></textarea></div>
+        <button type="submit" class="form-submit">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <svg viewBox="0 0 2000 1241.3" xmlns="http://www.w3.org/2000/svg"><style type="text/css">
+	.footer-st0{fill:rgba(255,255,255,0.75);}
+	.footer-st1{fill:#A3D8C7;}
+	.footer-st2{fill:rgba(255,255,255,0.35);}
+</style>
+<g>
+	<g>
+		<path class="footer-st0" d="M131.14,963.09c-36.63,0-64.83-20.03-64.83-52.45h32.15c1.32,15.02,11.86,27.15,32.68,27.15
+			c21.08,0,32.94-11.33,32.94-26.88c0-44.27-97.25-15.55-97.25-83.02c0-32.15,25.56-52.18,62.99-52.18
+			c35.05,0,59.82,18.45,62.46,49.81h-33.21c-1.05-12.39-11.86-23.72-30.84-24.25c-17.39-0.53-30.84,7.9-30.84,25.56
+			c0,41.38,96.99,15.55,96.99,82.49C194.39,936.74,171.99,963.09,131.14,963.09z"/>
+		<path class="footer-st0" d="M226,777.55c0-10.8,8.43-19.24,19.24-19.24c10.54,0,18.97,8.44,18.97,19.24c0,10.81-8.43,19.24-18.97,19.24
+			C234.44,796.79,226,788.36,226,777.55z M229.96,816.03H260v145.21h-30.05V816.03z"/>
+		<path class="footer-st0" d="M358.04,813.66c23.72,0,41.38,11.07,50.34,23.46v-21.08h30.31v147.59c0,39.53-25.56,69.31-70.89,69.31
+			c-38.74,0-67.47-19.24-71.16-51.39h29.78c4.48,15.02,20.56,25.3,41.38,25.3c23.19,0,40.59-14.23,40.59-43.22v-24.25
+			c-9.23,12.39-26.62,24.25-50.34,24.25c-38.22,0-68.52-30.84-68.52-75.64S319.82,813.66,358.04,813.66z M364.36,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.67,0,44.01-17.66,44.01-49.02
+			C408.38,857.41,387.03,839.75,364.36,839.75z"/>
+		<path class="footer-st0" d="M581.25,880.07c0-26.62-14.49-40.32-36.37-40.32c-22.14,0-36.63,13.7-36.63,40.32v81.17H478.2V816.03h30.05
+			v16.6c9.75-11.86,25.83-18.97,43.22-18.97c34,0,59.56,21.35,59.56,61.93v85.65h-29.78V880.07z"/>
+		<path class="footer-st0" d="M707.74,813.66c24.51,0,41.38,11.6,50.34,23.46v-21.08h30.31v145.21h-30.31v-21.61
+			c-9.23,12.39-26.62,23.99-50.87,23.99c-37.69,0-67.99-30.84-67.99-75.64S669.53,813.66,707.74,813.66z M714.07,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.67,0,44.01-17.66,44.01-49.02
+			C758.08,857.41,736.73,839.75,714.07,839.75z"/>
+		<path class="footer-st0" d="M827.91,766.22h30.05v195.02h-30.05V766.22z"/>
+		<path class="footer-st0" d="M1052.45,818.93c0.53-13.44-7.12-20.56-18.45-20.56c-11.86,0-19.5,7.91-19.5,17.66
+			c0,10.01,5.53,18.19,18.45,32.15l48.49,48.23l18.71-30.84h32.42l-23.72,40.59c-2.11,3.69-4.48,7.38-6.59,10.81l44.54,44.28h-39.27
+			l-22.66-22.66c-17.66,17.66-37.95,26.09-63.52,26.09c-39.53,0-65.89-21.87-65.89-56.14c0-24.77,13.97-45.59,42.96-57.45
+			c-10.28-12.39-13.97-22.14-13.97-35.05c0-23.98,19.5-42.17,50.86-42.17c31.89,0,49.02,20.03,47.18,45.07H1052.45z M1065.09,918.82
+			l-48.49-48.76c-21.35,8.43-31.1,21.08-31.1,37.43c0,17.66,14.23,31.62,35.84,31.62C1038.48,939.11,1052.45,932.26,1065.09,918.82z
+			"/>
+		<path class="footer-st0" d="M1295.42,963.09c-36.63,0-64.83-20.03-64.83-52.45h32.15c1.32,15.02,11.86,27.15,32.68,27.15
+			c21.08,0,32.94-11.33,32.94-26.88c0-44.27-97.25-15.55-97.25-83.02c0-32.15,25.56-52.18,62.99-52.18
+			c35.05,0,59.82,18.45,62.46,49.81h-33.21c-1.05-12.39-11.86-23.72-30.84-24.25c-17.39-0.53-30.84,7.9-30.84,25.56
+			c0,41.38,96.99,15.55,96.99,82.49C1358.67,936.74,1336.27,963.09,1295.42,963.09z"/>
+		<path class="footer-st0" d="M1455.38,813.66c35.58,0,58.77,17.66,66.94,48.23h-32.42c-5.01-13.97-16.6-22.93-34.53-22.93
+			c-24.25,0-40.32,17.92-40.32,49.55c0,31.89,16.08,49.81,40.32,49.81c17.92,0,28.99-7.9,34.53-22.93h32.42
+			c-8.17,28.46-31.36,48.23-66.94,48.23c-41.64,0-71.16-29.52-71.16-75.11C1384.22,843.18,1413.74,813.66,1455.38,813.66z"/>
+		<path class="footer-st0" d="M1610.87,813.66c24.51,0,41.38,11.6,50.34,23.46v-21.08h30.31v145.21h-30.31v-21.61
+			c-9.23,12.39-26.62,23.99-50.86,23.99c-37.69,0-68-30.84-68-75.64S1572.65,813.66,1610.87,813.66z M1617.19,839.75
+			c-22.4,0-44.01,16.87-44.01,48.23c0,31.36,21.61,49.55,44.01,49.55c22.66,0,44.01-17.66,44.01-49.02
+			C1661.2,857.41,1639.86,839.75,1617.19,839.75z"/>
+		<path class="footer-st0" d="M1731.03,766.22h30.05v195.02h-30.05V766.22z"/>
+		<path class="footer-st0" d="M1863.07,963.62c-41.64,0-72.48-29.52-72.48-75.11s29.52-74.85,72.48-74.85c41.38,0,70.63,28.73,70.63,71.42
+			c0,5.01-0.26,9.75-1.05,14.76h-110.95c2.11,23.99,19.24,38.48,41.38,38.48c18.45,0,28.73-8.96,34.26-20.29h32.42
+			C1921.57,943.32,1898.64,963.62,1863.07,963.62z M1821.95,875.59h80.38c-0.53-22.4-18.18-36.63-40.59-36.63
+			C1841.46,838.96,1825.12,852.66,1821.95,875.59z"/>
+	</g>
+	<g>
+		<path class="footer-st1" d="M603.13,1128.01h-53.24l-9.27,20.65H523.9l44.11-98.34h17.14l44.11,98.34h-16.72L603.13,1128.01z
+			 M576.58,1066.9l-20.79,46.78h41.59L576.58,1066.9z"/>
+		<path class="footer-st1" d="M758.23,1050.46v98.2H744.6l-0.84-10.96c-5.48,8.85-14.75,12.36-24.02,12.36c-20.09,0-35.4-13.21-35.4-36.1
+			c0-23.6,15.03-36.11,35.12-36.11c8.43,0,19.81,4.22,24.3,12.36v-39.76H758.23z M698.8,1113.97c0,13.91,9.69,22.62,21.92,22.62
+			c12.08,0,22.06-8.99,22.06-22.62c0-13.35-9.97-22.48-22.06-22.48C708.5,1091.49,698.8,1099.78,698.8,1113.97z"/>
+		<path class="footer-st1" d="M895.9,1079.27l-29.36,69.68h-15.88l-29.5-69.68h16.02l9.27,22.34l12.22,32.17l10.96-29.36l10.4-25.15H895.9z
+			"/>
+		<path class="footer-st1" d="M975.13,1059.04c0,11.94-17.98,11.94-17.98,0C957.15,1047.23,975.13,1047.23,975.13,1059.04z M958.84,1079.13
+			v69.54h14.47v-69.54H958.84z"/>
+		<path class="footer-st1" d="M1087.8,1096.4c-5.48-5.06-11.38-6.46-18.26-6.46c-8.85-0.14-14.75,2.81-14.75,8.29
+			c0.14,5.76,6.18,8.01,15.03,8.85c12.79,1.12,29.5,3.93,29.36,21.77c-0.14,12.93-11.52,21.92-29.5,21.92
+			c-11.24,0-22.48-2.53-31.61-12.78l7.59-10.26c6.46,7.16,16.16,10.11,24.3,10.26c6.88,0,14.61-2.53,14.75-8.99
+			c0.14-6.18-5.76-8.57-16.02-9.55c-13.06-1.27-28.1-5.48-28.24-20.79c0-15.31,15.87-21.07,28.8-21.07
+			c10.68,0,18.97,2.39,26.69,9.27L1087.8,1096.4z"/>
+		<path class="footer-st1" d="M1231.52,1114.11c0,20.51-14.19,35.96-35.96,35.96c-21.63,0-35.68-15.45-35.68-35.96
+			c0-20.37,14.19-36.1,35.68-36.1C1216.91,1078,1231.52,1093.74,1231.52,1114.11z M1174.34,1114.11c0,12.36,8.01,22.48,21.21,22.48
+			c13.35,0,21.35-10.11,21.35-22.48c0-12.22-8.71-22.76-21.35-22.76C1182.35,1091.35,1174.34,1101.88,1174.34,1114.11z"/>
+		<path class="footer-st1" d="M1310.89,1079.41l0.98,9.13c5.06-8.85,12.92-10.68,20.37-10.68c6.74,0,13.21,2.39,17.14,5.9l-6.6,12.64
+			c-3.51-2.81-6.88-4.21-12.22-4.21c-9.97,0-18.68,6.18-18.68,18.97v37.51h-14.47v-69.26H1310.89z"/>
+		<path class="footer-st1" d="M1476.1,1079.41l-43.69,101.43h-16.02l14.33-33.15l-27.68-68.28h16.86l11.94,32.73l6.88,19.67l7.45-19.39
+			l13.77-33.01H1476.1z"/>
+	</g>
+	<path class="footer-st2" d="M679.66,423.08c0-30.68,24.86-55.54,55.54-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C704.52,478.59,679.66,453.73,679.66,423.08z"/>
+	<path class="footer-st2" d="M849.81,536.99c-18.35,9.1-37.35,12.96-54.97,13.61c0.29,2.4,0.44,4.85,0.44,7.33v143.77H672.33V557.94
+		c0-32.26,24.88-58.72,56.48-61.25c1.64-0.15,3.31-0.21,4.99-0.21c5.67,0,11.17,0.76,16.37,2.21c0.06,0,0.1,0.02,0.15,0.04
+		c0.04,0.02,0.13,0.04,0.21,0.06c0,0,0.02,0.02,0.04,0.02c0.74,0.29,2.34,0.84,4.66,1.52c0.04,0.02,0.06,0.02,0.11,0.02
+		c7.5,2.17,22.29,5.46,39.5,4.23c17.51-1.22,37.54-7.14,54.97-23.66V536.99z"/>
+	<path class="footer-st1" d="M941.65,474.08c13.08-17.38,22.92-29.96,31.1-38.96v266.58H849.81v-141.5c20.92-8.57,42.28-22.96,61.18-46.41
+		C922.54,499.49,932.65,486.05,941.65,474.08z"/>
+	<path class="footer-st1" d="M940.78,274.35c0-30.68,24.86-55.54,55.51-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C965.65,329.87,940.78,305.01,940.78,274.35z"/>
+	<path class="footer-st1" d="M1150.23,297.11v80.71c-17.49,20.6-33.88,32.59-50.86,37.65c-26.67,7.9-47.32-3.24-63.92-12.2
+		c-2.82-1.52-5.52-2.99-8.15-4.3c-7.23-3.62-13.84-6.15-20.46-5.79c-13.08,0.72-23.62,4.87-34.09,12.96
+		c-14.07,10.85-28.04,28.84-47.93,55.28c-8.85,11.76-18.88,25.09-30.21,39.17c-13.59,16.88-28.95,28.59-44.79,36.41v-56.06
+		c2.99-2.82,5.9-5.96,8.7-9.44c10.85-13.46,20.23-25.91,29.28-37.94c27.56-36.62,50.59-67.21,84.95-80.19
+		c9.52-3.58,19.93-5.84,31.54-6.47c8.32-0.46,15.97,0.59,23.01,2.49c11.59,3.1,21.53,8.45,30.17,13.1
+		c14.5,7.82,21.13,10.79,28.72,8.53c9.4-2.78,26.27-14.94,53.13-57.01C1143.12,308.06,1146.73,302.46,1150.23,297.11z"/>
+	<path class="footer-st1" d="M1105.35,435.65c15.42-4.57,30.11-13.4,44.88-27.28v293.34h-122.93V422.82c13.44,7.23,31.46,16.41,53.91,16.41
+		C1089.25,439.24,1097.36,438.04,1105.35,435.65z"/>
+	<path class="footer-st0" d="M1210.69,116c0-30.68,24.86-55.54,55.54-55.54c30.65,0,55.52,24.86,55.52,55.54
+		c0,30.65-24.86,55.52-55.52,55.52C1235.55,171.52,1210.69,146.66,1210.69,116z"/>
+	<path class="footer-st0" d="M1327.68,252.57v449.14h-122.93V299.07c-8.2,11.88-16.66,24.67-26.38,39.9
+		c-9.84,15.38-19.13,28.25-28.15,38.85v-80.71c6.74-10.28,13-19.55,19.21-28.44c30.76-44.14,45.21-63.48,70.75-71.78
+		c9.25-3.01,19.95-4.57,33.41-5.33c1.54,0.17,3.03,0.4,4.53,0.7c7.77,1.52,15.02,4.53,21.45,8.7
+		C1316.5,211.89,1327.68,230.93,1327.68,252.57z"/>
+</g></svg>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#methodology">Methodology</a></li>
+      <li><a href="#resources">Knowledge &amp; Tools</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2025 Signal &amp; Scale Advisory, LLC. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<script>
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
+      // Clear form
+      form.reset();
+      // Show thank you message
+      form.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;">
+          <div style="width:48px;height:48px;background:#EAF4F4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#116B78;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div style="font-size:18px;font-weight:600;color:#192A4A;margin-bottom:8px;">Message received.</div>
+          <div style="font-size:14px;color:#7A7A7A;font-weight:300;line-height:1.7;">Thank you for reaching out. I'll be in touch shortly — usually within a day or two.</div>
+        </div>`;
+    } catch(err) {
+      alert('Something went wrong. Please email hello@signal-and-scale.com directly.');
+    }
+  });
+</script>
+</body>
+</html>
